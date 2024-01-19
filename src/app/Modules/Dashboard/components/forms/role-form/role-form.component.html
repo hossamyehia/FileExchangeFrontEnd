@@ -1,0 +1,58 @@
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+  .btns{
+    padding: 0;
+  }
+</style>
+<form class="space" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+  <div class="cols-4">
+    <div>
+      <label class="inblock">الكود:</label>
+      <input
+        class="inblock"
+        type="text"
+        formControlName="tag"
+        required
+      />
+    </div>
+    <div>
+      <label class="inblock">الأسم:</label>
+      <input
+        class="inblock"
+        type="text"
+        formControlName="title"
+        required
+      />
+    </div>
+    <div>
+      <label class="inblock">الصلاحيات:</label>
+      <input
+        class="inblock"
+        type="text"
+        formControlName="permission"
+        required
+      />
+    </div>
+
+    <div class="btns">
+      <ng-container *ngIf="formType">
+        <button type="submit" [disabled]="!dataForm.valid">
+          إضافة
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!formType">
+        <button  type="submit" [disabled]="!dataForm.valid">
+          تعديل
+        </button>
+        <button type="reset" (click)="reset()">
+          إلغاء
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</form>

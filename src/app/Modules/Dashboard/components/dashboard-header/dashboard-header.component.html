@@ -1,0 +1,24 @@
+<nav class="dashboardHeader">
+  <div>
+    <div #controller (click)="toggleNavBar(controller)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h2>
+      منظومة تبادل الملفات
+    </h2>
+  </div>
+
+  <ul>
+    <li class="user">
+      {{ this.userInfo.name }}
+    </li>
+    <li class="user">
+      {{ this.userInfo.unit_name }}
+    </li>
+    <li class="logout" (click)="logout()">
+      تسجيل الخروج
+    </li>
+  </ul>
+</nav>

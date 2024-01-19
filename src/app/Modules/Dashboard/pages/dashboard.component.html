@@ -1,0 +1,9 @@
+<div class="dashboardPage white">
+  <app-dashboard-header [active]="active" (statusChange)="toggleNavBar($event)"></app-dashboard-header>
+  <div class="dashboardBody">
+    <app-navbar [active]="active"></app-navbar>
+    <div class="mainBody">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

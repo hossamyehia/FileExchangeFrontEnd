@@ -1,0 +1,8 @@
+<router-outlet></router-outlet>
+<app-message
+  [type]="msg.msgType"
+  [show]="msg.msgShow"
+  [msg]="msg.msgContent"
+  (done)="msgDone()"
+></app-message>
+<app-footer></app-footer>

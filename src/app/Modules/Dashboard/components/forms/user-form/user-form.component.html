@@ -1,0 +1,70 @@
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+  .btns {
+    padding: 0;
+  }
+</style>
+<form class="space" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+  <div class="cols-3">
+    <div >
+      <label class="inblock">الأسم:</label>
+      <input class="inblock" type="text" formControlName="name" required />
+    </div>
+    <div>
+      <label class="inblock">أسم المستخدم:</label>
+      <input
+        class="inblock"
+        type="text"
+        formControlName="username"
+        autocomplete="off"
+        required
+      />
+    </div>
+    <div>
+      <label class="inblock">كلمة السر:</label>
+      <input
+        class="inblock"
+        type="text"
+        formControlName="password"
+        autocomplete="off"
+        required
+      />
+    </div>
+
+  </div>
+  <div class="cols-4">
+    <div>
+      <label class="inblock">نوع الحساب:</label>
+      <select class="inblock" formControlName="role">
+        <option *ngFor="let option of this.options" [value]="option.tag">
+          {{ option.title }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label class="inblock">الوحدة:</label>
+      <select class="inblock" formControlName="unit_id">
+        <option *ngFor="let option of this.unit_list" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+
+
+    <div class="span-2 btns">
+      <ng-container *ngIf="formType">
+        <button type="submit" [disabled]="!dataForm.valid">إضافة</button>
+      </ng-container>
+      <ng-container *ngIf="!formType">
+        <button type="submit" [disabled]="!dataForm.valid">تعديل</button>
+        <button type="reset" (click)="reset()">إلغاء</button>
+      </ng-container>
+    </div>
+  </div>
+</form>

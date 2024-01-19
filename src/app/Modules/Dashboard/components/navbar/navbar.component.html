@@ -1,0 +1,72 @@
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    padding: 0;
+  }
+</style>
+<nav [ngClass]="{ active }" class="dashboardNav">
+  <div class="navBody">
+    <div>
+      <label></label>
+      <a
+        [routerLink]="['/dashboard']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        الصفحة الرئيسية
+      </a>
+    </div>
+
+    <div class="menu">
+      <label>الملفات</label>
+      <div>
+        <a
+          *ngIf="routes['file']"
+          [routerLink]="['/dashboard/files', 'sent']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          ملفاتي
+        </a>
+        <a
+          *ngIf="routes['file']"
+          [routerLink]="['/dashboard/files', 'recieved']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          الواردة
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="routes['user'] || routes['role'] || routes['unit']" class="menu">
+      <label>الحسابات والوحدات</label>
+      <div>
+        <a
+          *ngIf="routes['user']"
+          [routerLink]="['/dashboard/user']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          الحسابات
+        </a>
+        <a
+          *ngIf="routes['role']"
+          [routerLink]="['/dashboard/role']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          أنواع الحسابات
+        </a>
+        <a
+          *ngIf="routes['unit']"
+          [routerLink]="['/dashboard/unit']"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          الوحدات
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

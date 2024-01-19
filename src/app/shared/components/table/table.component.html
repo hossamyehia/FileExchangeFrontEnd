@@ -1,0 +1,86 @@
+<table class="table">
+  <thead class="tableHeader">
+    <tr>
+      <th
+        *ngFor="let header of headers | keyvalue : onCompare"
+        (click)="sortBy(header.key)"
+      >
+        {{ header.value }} <span>{{ sortIcon(header.key) }}</span>
+      </th>
+      <th *ngIf="operation"></th>
+    </tr>
+  </thead>
+  <tbody class="tableBody">
+    <ng-container *ngIf="rows && rows.length">
+      <tr *ngFor="let row of pageOfRows">
+        <td *ngFor="let header of headers | keyvalue : onCompare">
+          {{ isDate(row[header.key]) ? (row[header.key] | date) : row[header.key] }}
+          <!--  -->
+        </td>
+        <td class="operations" *ngIf="operation">
+          <ng-container *ngIf="route === 'dobatSaf'">
+            <a [routerLink]="['./', row.id]">
+              <button>عرض</button>
+            </a>
+          </ng-container>
+          <ng-container *ngIf="canEdit">
+            <ng-container *ngIf="route === 'dobatSaf'">
+              <a [routerLink]="['./addedit']" [queryParams]="{ id: row.id }">
+                <button>تعديل</button>
+              </a>
+            </ng-container>
+            <ng-container *ngIf="route !== 'dobatSaf'">
+              <button (click)="runOp(row.id || row.tag, 'edit')">تعديل</button>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="canDelete">
+            <button (click)="runOp(row.id || row.tag, 'delete')">حذف</button>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-container>
+
+    <tr *ngIf="!(rows && rows.length)">
+      <td [attr.colspan]="getLength(headers || {}) + 1" class="noItems">
+        لا يوجد شئ
+      </td>
+    </tr>
+
+    <tr *ngIf="loading">
+      <td colspan="5" class="text-center py-5">
+        <span class="spinner-border spinner-border-lg align-center"></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-container *ngIf="rows && rows.length">
+  <ul *ngIf="pager && pager.pages?.length" class="paginator">
+    <li
+      [ngClass]="{ disabled: pager.currentPage === 1 }"
+      (click)="preparePage(pager.currentPage - 1)"
+      class="page-item"
+    >
+      &laquo; السابق
+    </li>
+    <li
+      *ngFor="let page of pager.pages"
+      [ngClass]="{ active: pager.currentPage === page }"
+      (click)="preparePage(page)"
+      class="page-item"
+    >
+      {{ page }}
+    </li>
+    <li
+      [ngClass]="{ disabled: pager.currentPage === pager.totalPages }"
+      class="page-item"
+      (click)="preparePage(pager.currentPage + 1)"
+    >
+      التالي &raquo;
+    </li>
+  </ul>
+</ng-container>
+
+<ng-container *ngIf="!(rows && rows.length)">
+  <div class="paginator noPages"></div>
+</ng-container>

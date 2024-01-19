@@ -1,0 +1,54 @@
+<style>
+  :host ::ng-deep {
+    /*margin: 0 auto;*/
+
+    box-sizing: border-box;
+  }
+</style>
+<div class="card">
+  <div class="infoList">
+    <div class="info">
+      <h4 class="title">{{ data.name }}</h4>
+    </div>
+    <div class="type">
+      <div class="icon">
+        <img [src]="'./assets/icons/' + data.type + '.png'" />
+      </div>
+      <div class="details">
+        <p>{{ data.type | uppercase }}</p>
+        <p>{{ data.size }}{{ data.sizeUnit }}</p>
+        <p>{{ data.createdAt | date : " yyyy/MM/dd" }}</p>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="type == 'file'">
+    <div class="card-btns">
+      <button #download (click)="getFile()" class="card-btn">تحميل</button>
+      <button #share (click)="pressShare()" class="card-btn">مشاركة</button>
+      <button #delete (click)="deleteFile()" class="card-btn">حذف</button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="type == 'pending'">
+    <div class="card-btns">
+      <button #download (click)="acceptFile()" class="card-btn pending-btn">
+        قبول
+      </button>
+      <button #delete (click)="refuseFile()" class="card-btn pending-btn">
+        رفض
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="type == 'shared'">
+    <div class="card-btns">
+      <button #download (click)="getFile()" class="card-btn shared-btn">
+        تحميل
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+
+<app-dialog [display]="dialogDisplay" (close)="closeDialog()">
+  <app-share-form [file_id]="data.id" [units]="units"></app-share-form>
+</app-dialog>

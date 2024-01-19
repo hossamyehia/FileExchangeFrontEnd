@@ -1,0 +1,28 @@
+<h2 class="subPageHeader">الحسابات</h2>
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 80%;
+
+    box-sizing: border-box;
+  }
+</style>
+
+<div class="subPageBody">
+  <div class="container">
+    <app-user-form
+      [data]="forEdit"
+      [formType]="formType"
+      (cancel)="reset()"
+    ></app-user-form>
+  </div>
+
+  <app-table
+    [route]="'user'"
+    [pageSize]="8"
+    [operation]="true"
+    [headers]="headers"
+    [rows]="displayData"
+    (runOperation)="runOperation($event)"
+  ></app-table>
+</div>

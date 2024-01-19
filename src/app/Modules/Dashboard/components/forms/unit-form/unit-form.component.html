@@ -1,0 +1,56 @@
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+  .btns {
+    padding: 0;
+  }
+  div.hideDiv{
+    grid-template-columns: minmax(auto, 50px) auto;
+  }
+  .hideMe{
+    width: clamp(50px, 100px, 170px);
+  }
+  .unitForm{
+    grid-template-columns: repeat(4, auto);
+  }
+</style>
+<form class="space" [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+  <div class="cols-4 unitForm">
+    <div>
+      <label class="inblock">الأسم:</label>
+      <input class="inblock" type="text" formControlName="name" required />
+    </div>
+    <div class="hideDiv">
+      <label class="hideMe"></label>
+      <label class="inblock">
+        <input
+        type="checkbox"
+        formControlName="master"
+        name="master"
+      />
+        قيادية
+      </label>
+    </div>
+    <div>
+      <label class="inblock">المجموعة الرئيسية:</label>
+      <select class="inblock" formControlName="master_id">
+        <option *ngFor="let option of this.masterUnits" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+    <div class="btns">
+      <ng-container *ngIf="formType">
+        <button type="submit" [disabled]="!dataForm.valid">إضافة</button>
+      </ng-container>
+      <ng-container *ngIf="!formType">
+        <button type="submit" [disabled]="!dataForm.valid">تعديل</button>
+        <button type="reset" (click)="reset()">إلغاء</button>
+      </ng-container>
+    </div>
+  </div>
+</form>

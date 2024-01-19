@@ -1,0 +1,37 @@
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 80%;
+
+    box-sizing: border-box;
+  }
+</style>
+<ng-container *ngIf="pending" class="pending">
+  <h2 class="subPageHeader">قيد الانتظار</h2>
+  <h2 class="subPageHeader"></h2>
+  <div class="subPageBody">
+    <div class="container">
+      <div class="dirList">
+        <app-card *ngFor="let item of pendingList" [data]="item" [type]="'pending'"></app-card>
+        <h1 *ngIf="!(pendingList && pendingList.length)">
+          لا يوجد شئ
+        </h1>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container>
+  <h2 class="subPageHeader">الواردة</h2>
+  <h2 class="subPageHeader"></h2>
+  <div class="subPageBody">
+    <div class="container">
+      <div class="dirList">
+        <app-card *ngFor="let item of sharedList" [data]="item" [type]="'shared'"></app-card>
+        <h1 *ngIf="!(sharedList && sharedList.length)">
+          لا يوجد شئ
+        </h1>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,28 @@
+<h2 class="subPageHeader">الوحدات</h2>
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 80%;
+
+    box-sizing: border-box;
+  }
+</style>
+
+<div class="subPageBody">
+  <div *ngIf="canWrite || canEdit" class="container">
+    <app-unit-form
+      [data]="forEdit"
+      [formType]="formType"
+      (cancel)="reset()"
+    ></app-unit-form>
+  </div>
+
+  <app-table
+    [route]="'unit'"
+    [pageSize]="8"
+    [operation]="true"
+    [headers]="headers"
+    [rows]="displayData"
+    (runOperation)="runOperation($event)"
+  ></app-table>
+</div>

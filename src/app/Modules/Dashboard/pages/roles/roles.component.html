@@ -1,0 +1,28 @@
+<h2 class="subPageHeader">أنواع الحسابات</h2>
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 80%;
+
+    box-sizing: border-box;
+  }
+</style>
+
+<div class="subPageBody">
+  <div class="container">
+    <app-role-form
+      [data]="forEdit"
+      [formType]="formType"
+      (cancel)="reset()"
+    ></app-role-form>
+  </div>
+
+  <app-table
+    [route]="'role'"
+    [pageSize]="8"
+    [operation]="true"
+    [headers]="headers"
+    [rows]="displayData"
+    (runOperation)="runOperation($event)"
+  ></app-table>
+</div>

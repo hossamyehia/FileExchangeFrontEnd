@@ -1,0 +1,103 @@
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+  .btns {
+    padding: 0;
+  }
+</style>
+<form class="space" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+  <div class="cols-4">
+    <div class="small">
+      <label class="inblock">رقم عسكري</label>
+      <input class="inblock" type="text" formControlName="rkmaskry" />
+    </div>
+    <div class="small">
+      <label class="inblock">اسم</label>
+      <input class="inblock" type="text" formControlName="name" />
+    </div>
+    <div class="small">
+      <label class="inblock">درجة</label>
+      <select class="inblock" formControlName="daraga_id">
+        <option [value]="">default</option>
+        <option *ngFor="let option of this.daragat" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+    <div class="small">
+      <label class="inblock">فئة</label>
+      <select class="inblock" formControlName="fea_id">
+        <option [value]="">default</option>
+        <option *ngFor="let option of this.feaat" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="cols-4">
+    <div class="medium span-2">
+      <label class="inblock">السلاح الأساسي</label>
+      <ng-select class="inblock" [items]="asleha" bindLabel="name" bindValue="id" formControlName="selah_id" required></ng-select>
+      <!-- 
+      <select class="inblock" formControlName="selah_id">
+        <option [value]="">default</option>
+        <option *ngFor="let option of this.asleha" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+       -->
+    </div>
+    <div class="small span-2">
+      <label class="inblock">الوحدة</label>
+      <ng-select class="inblock" [items]="wehdat" bindLabel="name" bindValue="id" formControlName="wehda_id" required></ng-select>
+      <!-- 
+      <select class="inblock" formControlName="wehda_id">
+        <option [value]="">default</option>
+        <ng-container *ngTemplateOutlet="wehdatOpts"></ng-container>
+      </select>
+       -->
+    </div>
+  </div>
+  <div class="cols-4">
+    <div class="small">
+      <label class="inblock">الخدمة</label>
+      <select class="inblock" formControlName="khedma_id">
+        <option [value]="">default</option>
+        <option *ngFor="let option of this.khedmaStatus" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+    <div class="small">
+      <label class="inblock">المحافظة</label>
+      <select class="inblock" formControlName="mohafza_id">
+        <option [value]="">default</option>
+        <option *ngFor="let option of this.mohafzat" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+    <div class="btns span-2">
+      <button class="inblock" type="submit">بحث</button>
+    </div>
+  </div>
+
+
+</form>
+<!-- 
+<ng-template #wehdatOpts>
+  <option *ngFor="let option of this.wehdat" [value]="option.id">
+    {{ option.name }}
+  </option>
+</ng-template>
+ -->
+<app-message
+  [type]="msgType"
+  [show]="msgShow"
+  [msg]="msgContent"
+  (done)="msgDone()"
+></app-message>

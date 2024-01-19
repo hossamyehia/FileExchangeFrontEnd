@@ -1,0 +1,39 @@
+<style>
+  :host ::ng-deep{
+    width: 100%;
+
+    margin: 0 auto;
+    padding: 0;
+  }
+</style>
+<div id="container">
+  <div class="cards-wrapper" >
+    <div class="card-container">
+      <div #card1 class="card" (mouseover)="rotate(card1)">
+        <div class="card-contents card-front">
+          <img src="./assets/images/hayaa.png">
+        </div>
+        <div class="card-contents card-back">
+          <img src="./assets/images/hayaa.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="loginTitle" >
+      <h2>
+        منظومة تبادل الملفات
+      </h2>
+  </div>
+  <div class="cards-wrapper" >
+    <div class="card-container">
+      <div #card2 class="card" (mouseover)="rotate(card2)">
+        <div class="card-contents card-front">
+          <img src="./assets/images/waqood.jpg">
+        </div>
+        <div class="card-contents card-back">
+          <img src="./assets/images/waqood.jpg">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

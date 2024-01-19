@@ -1,0 +1,42 @@
+<style>
+  :host ::ng-deep{
+    position: fixed;
+    width: 20vw;
+    font-size: large;
+
+    bottom: 2vh;
+    right: calc(50% - 10vw);
+
+    z-index: 101;
+  }
+
+  #msg{
+    text-align: center;
+    padding: 0.3em 0.5em;
+  }
+
+  .show{
+    display: block;
+  }
+  .hide{
+    display: none;
+  }
+
+  #msg.success{
+    display: block;
+    color: #1c6e37;
+    background-color: #d5f1de;
+    border: 0.5px solid #c0eace;
+  }
+  #msg.error{
+
+    display: block;
+    color: #893232;
+    background-color: #fadddd;
+    border: 0.5px solid #f7cbcb;
+  }
+</style>
+
+<p id="msg" [ngClass]="{success: type, error: type == false, show: show, hide: show == false}">
+  {{msg}}
+</p>

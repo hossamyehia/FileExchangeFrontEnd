@@ -1,0 +1,32 @@
+<h2 class="subPageHeader">ملفاتي</h2>
+<style>
+  :host ::ng-deep {
+    margin: 0 auto;
+    width: 80%;
+
+    box-sizing: border-box;
+  }
+</style>
+<h2 class="subPageHeader"></h2>
+<div class="subPageBody">
+  <div class="container">
+    <div class="actionsBar">
+      <button (change)="uploadFile($event)" class="addFileBtn">
+        <img src="./assets/icons/file.png" />
+        <input type="file" />
+      </button>
+    </div>
+    <div class="dirList">
+      <app-card
+        *ngFor="let item of list; let i = index"
+        [data]="item"
+        [index]="i"
+        [units]="units"
+        [type]="'file'"
+        (deleteEvent)="deleteFromList($event)"
+      ></app-card>
+      <h1 *ngIf="!(list && list.length)">لا يوجد شئ</h1>
+    </div>
+  </div>
+</div>
+

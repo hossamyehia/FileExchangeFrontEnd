@@ -1,0 +1,24 @@
+<style>
+  :host ::ng-deep {
+    /*margin: 0 auto;*/
+
+    box-sizing: border-box;
+  }
+
+  .shareForm{
+    padding: 0px 1em;
+  }
+</style>
+
+<div class="shareForm">
+  <h2>أختر الوحدات من فضلك</h2>
+  <div *ngFor="let unit of units; let i=index">
+    <label>
+      <input type="checkbox" [value]="unit.id" [checked]="currentSelected.indexOf(unit.id) !== -1" (change)="onCheckChange($event)">
+      {{unit.name}}
+    </label>
+  </div>
+</div>
+<div class="btns">
+  <button [disabled]="!myForm.valid" type="submit" (click)="submit()">تأكيد</button>
+</div>

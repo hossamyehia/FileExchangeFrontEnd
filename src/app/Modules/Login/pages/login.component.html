@@ -1,0 +1,46 @@
+<style>
+  :host ::ng-deep{
+    width: 100%;
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 0;
+  }
+
+</style>
+<div class="loginPage">
+  <app-login-header></app-login-header>
+  <form class="formBody" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div>
+          <label>اسم المستخدم</label>
+          <input type="text" name="Username" placeholder="أسم المستخدم" id="username" formControlName="username" required autocomplete="off">
+      </div>
+      <div *ngIf="( loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched) ) " class="alert">
+          <div *ngIf="loginForm.controls['username'].errors">
+              من فضلك أدخل أسم المستخدم
+          </div>
+      </div>
+      <div>
+          <label>كلمة السر</label>
+          <input type="password" name="Password" placeholder="كلمة السر" id="password" formControlName="password" required autocomplete="off">
+      </div>
+
+      <div *ngIf="( loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)) " class="alert">
+          <div *ngIf="loginForm.controls['password'].errors">
+              من فضلك أدخل كلمة السر
+          </div>
+      </div>
+
+      <button type="submit" [disabled]="!loginForm.valid">تسجيل الدخول</button>
+
+  </form>
+
+</div>
+<!--
+<app-message
+  [type]="msgType"
+  [show]="msgShow"
+  [msg]="msgContent"
+  (done)="msgDone()"
+></app-message>
+ -->
